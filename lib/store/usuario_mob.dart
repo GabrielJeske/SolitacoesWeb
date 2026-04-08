@@ -85,7 +85,7 @@ abstract class UsuarioMobBase with Store {
   Future <ApiResponse> obtemListaAcessos() async{
     var urlCompleta = Uri.parse("$url$porta/acessos");         
     try{
-      var resposta =  await http.get(urlCompleta,headers: {'Content-Type': 'application/json'});                    
+      var resposta =  await http.get(urlCompleta,headers: {'Content-Type': 'application/json'}).timeout(timeOut);                    
       try{
         var body = jsonDecode(resposta.body);
         ApiResponse resp = ApiResponse.fromMap(body);  
@@ -98,7 +98,7 @@ abstract class UsuarioMobBase with Store {
           for (var i = 0; i < totalFiltros; i ++) {                 
             filtros.add(false);
           }  
-          return ApiResponse(sucesso: true, mensagem: "Acessoes carregados");
+          return ApiResponse(sucesso: true, mensagem: "Acessos carregados");
         } else {          
           return ApiResponse(sucesso: false, mensagem: "Erro ao obter resposta: ${resposta.statusCode}, Mensagem: ${resp.mensagem}" );
         }          

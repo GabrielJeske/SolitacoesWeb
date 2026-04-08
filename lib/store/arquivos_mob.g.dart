@@ -46,6 +46,24 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
     });
   }
 
+  late final _$anexosTicketAtom = Atom(
+    name: 'ArquivosMobBase.anexosTicket',
+    context: context,
+  );
+
+  @override
+  ObservableList<PlatformFile> get anexosTicket {
+    _$anexosTicketAtom.reportRead();
+    return super.anexosTicket;
+  }
+
+  @override
+  set anexosTicket(ObservableList<PlatformFile> value) {
+    _$anexosTicketAtom.reportWrite(value, super.anexosTicket, () {
+      super.anexosTicket = value;
+    });
+  }
+
   late final _$anexosSpeedAtom = Atom(
     name: 'ArquivosMobBase.anexosSpeed',
     context: context,
@@ -79,6 +97,24 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
   set filtros(ObservableMap<String, bool> value) {
     _$filtrosAtom.reportWrite(value, super.filtros, () {
       super.filtros = value;
+    });
+  }
+
+  late final _$ticketAtom = Atom(
+    name: 'ArquivosMobBase.ticket',
+    context: context,
+  );
+
+  @override
+  bool get ticket {
+    _$ticketAtom.reportRead();
+    return super.ticket;
+  }
+
+  @override
+  set ticket(bool value) {
+    _$ticketAtom.reportWrite(value, super.ticket, () {
+      super.ticket = value;
     });
   }
 
@@ -124,7 +160,7 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
   );
 
   @override
-  Future<void> obtemSolic() {
+  Future<ApiResponse> obtemSolic() {
     return _$obtemSolicAsyncAction.run(() => super.obtemSolic());
   }
 
@@ -148,6 +184,16 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
     return _$baixaAnexoAsyncAction.run(() => super.baixaAnexo());
   }
 
+  late final _$baixaAnexoTicketAsyncAction = AsyncAction(
+    'ArquivosMobBase.baixaAnexoTicket',
+    context: context,
+  );
+
+  @override
+  Future<void> baixaAnexoTicket() {
+    return _$baixaAnexoTicketAsyncAction.run(() => super.baixaAnexoTicket());
+  }
+
   late final _$baixaAnexoSpeedAsyncAction = AsyncAction(
     'ArquivosMobBase.baixaAnexoSpeed',
     context: context,
@@ -162,6 +208,18 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
     name: 'ArquivosMobBase',
     context: context,
   );
+
+  @override
+  void setTicket(bool valor) {
+    final _$actionInfo = _$ArquivosMobBaseActionController.startAction(
+      name: 'ArquivosMobBase.setTicket',
+    );
+    try {
+      return super.setTicket(valor);
+    } finally {
+      _$ArquivosMobBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setTermoBusca(String valor) {
@@ -200,6 +258,18 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
   }
 
   @override
+  void removerAnexoTicket(int index) {
+    final _$actionInfo = _$ArquivosMobBaseActionController.startAction(
+      name: 'ArquivosMobBase.removerAnexoTicket',
+    );
+    try {
+      return super.removerAnexoTicket(index);
+    } finally {
+      _$ArquivosMobBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void removerAnexoSpeed(int index) {
     final _$actionInfo = _$ArquivosMobBaseActionController.startAction(
       name: 'ArquivosMobBase.removerAnexoSpeed',
@@ -215,8 +285,10 @@ mixin _$ArquivosMob on ArquivosMobBase, Store {
   String toString() {
     return '''
 anexos: ${anexos},
+anexosTicket: ${anexosTicket},
 anexosSpeed: ${anexosSpeed},
 filtros: ${filtros},
+ticket: ${ticket},
 solicitacoes: ${solicitacoes},
 termoBusca: ${termoBusca},
 listaAlt: ${listaAlt},

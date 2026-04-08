@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solicitacoes/widgets/cultom_drawer.dart';
 import 'package:solicitacoes/widgets/custom_appbar.dart';
+import 'package:solicitacoes/widgets/custom_form.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar:CustomAppBar(title: 'Home'),
       drawer: CustomDrawer(),
-      body: Center(      
+      body: CustomForm(
         child: Column(        
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

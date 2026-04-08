@@ -86,7 +86,7 @@ Future<ApiResponse> fazLogin () async{
       urlCompleta,
       headers: {"Content-Type": "application/json"}, 
       body: json.encode(requisicao),
-    );
+    ).timeout(timeOut);
 
     try{
       var body = jsonDecode(resposta.body);
@@ -117,7 +117,7 @@ Future<ApiResponse> obtemPermissoesUser() async{
 
     var urlCompleta = Uri.parse("$url$porta/usuarios/acessos");     
     try{
-      var resposta =  await http.post(urlCompleta,headers: {'Content-Type': 'application/json'}, body: jsonEncode(req));        
+      var resposta =  await http.post(urlCompleta,headers: {'Content-Type': 'application/json'}, body: jsonEncode(req)).timeout(timeOut);        
         try{
           var body = jsonDecode(resposta.body);
           ApiResponse resp = ApiResponse.fromMap(body);  

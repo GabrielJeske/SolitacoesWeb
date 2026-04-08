@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:solicitacoes/pages/solicitacao/alte_solic.dart';
-import 'package:solicitacoes/pages/solicitacao/cons_solic.dart';
-import 'package:solicitacoes/pages/solicitacao/excl_solic.dart';
+import 'package:solicitacoes/objetos/solicitacoes.dart';
+import 'package:solicitacoes/pages/solicitacao/solicitacao.dart';
+import 'package:solicitacoes/pages/solicitacao/solicitacoes.dart';
 import 'package:solicitacoes/pages/home_page.dart';
 import 'package:solicitacoes/pages/solicitacao/incl_solic.dart';
 import 'package:solicitacoes/pages/login_page.dart';
-import 'package:solicitacoes/pages/solicitacao/speed_solic.dart';
 import 'package:solicitacoes/pages/usuarios/alteracao.dart';
 import 'package:solicitacoes/pages/usuarios/alterar_senha.dart';
 import 'package:solicitacoes/pages/usuarios/consulta.dart';
@@ -20,9 +19,7 @@ class Routes {
     GetPage(name: '/usuarios/alteracao', page: () => Alteracao()),
     GetPage(name: '/usuarios/senha', page: () => AlterarSenha()),
     GetPage(name: '/solicitacoes/inclusao', page: () => Inclusaosolicitacao()),
-    GetPage(name: '/solicitacoes/alteracao', page: () => Alteracaosolic()),
-    GetPage(name: '/solicitacoes/consulta', page: () => ConsultaSolic()),
-    GetPage(name: '/solicitacoes/exclusao', page: () => Exclusaosolic()),
-    GetPage(name: '/solicitacoes/speed', page: () => Speedsolic()),
+    GetPage(name: '/solicitacoes/consulta', page: () => CentralSolic(),),
+    GetPage(name: '/solicitacoes/hub', page: (){Solicitacoes solicitacao = Get.arguments as Solicitacoes; return Solicitacao(solicitacao: solicitacao);})
   ];
 }

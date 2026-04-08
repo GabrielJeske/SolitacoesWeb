@@ -74,8 +74,14 @@ void validaTodosCampos(){
 }
 
 void validaAlteracao(){
+  String ctr = '';
   
-  String ctr = box.read("ctr");
+  if(isSpeed()){
+     ctr = usuarioMob.antigoUser.ctr ?? "";
+  }else {
+     ctr = box.read("ctr");
+  }
+  log( "CTr: $ctr");
   validaCampos("ctr", ctr);  
   validaCampos("nome", nomeController.text);
   validaCampos("senha", senhaController.text);
@@ -110,7 +116,7 @@ setCampo (String campo, String value ){
     break;
   }
 }
- isSpeed() {
+ bool isSpeed() {
   String ctr = box.read("ctr");
   if (ctr == "09999"){
     return true;
@@ -223,7 +229,7 @@ Future<ApiResponse> incluirUsuario() async{
     }catch (e){
        return ApiResponse(
         sucesso: false, 
-        mensagem: "Erro no servidor (Resposta inválida): ${resposta.statusCode}"
+        mensagem: "Erro ao descodificar resposta: ${e.toString()}"
       );
     }   
   }catch(e){    
@@ -235,8 +241,12 @@ Future<ApiResponse> incluirUsuario() async{
 }
 
 Future<ApiResponse> alterarUsuario() async{
-  String ctr = box.read("ctr");
-  usuario.ctr = ctr;
+  if (isSpeed()){
+    usuario.ctr = usuarioMob.antigoUser.ctr ?? "";
+  }else {
+    usuario.ctr = box.read("ctr") ?? "";
+  }
+ 
   montaPermissao();
   montaCheck();
   var urlCompleta = Uri.parse("$url$porta/usuarios/alterar");   

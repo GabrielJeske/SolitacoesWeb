@@ -14,22 +14,30 @@ import 'package:solicitacoes/store/arquivos_mob.dart';
 final TextEditingController cod = TextEditingController();
 final TextEditingController data = TextEditingController();
 final TextEditingController descricao = TextEditingController();
+final TextEditingController solucao = TextEditingController();
+final TextEditingController ticket = TextEditingController();
 
 Solicitacoes solicitacao = Solicitacoes();
 
-  void setCampo(String chave, dynamic value){  
+  void setField(String chave, dynamic value){  
 
     if (value != null && chave != '' && chave != ''){
       switch (chave) {
         case 'prioridade':
-          box.write(chave, value);          
-        break;      
+          box.write(chave, value);
+        break;
         case 'descricao':
           box.write(chave, value);
-        break;     
+        break;
         case 'status':
           box.write(chave, value);
-        break;  
+        break;
+        case 'solucao':
+          box.write(chave, value);
+        break;
+        case 'ticket':
+          box.write(chave, value);
+        break;     
       }
     }
   }
@@ -39,8 +47,7 @@ Solicitacoes solicitacao = Solicitacoes();
     
     for ( int a = 0 ; a < arq.anexos.length; a++){
       PlatformFile file = arq.anexos[a];      
-      String? outputFile = await FilePicker.platform.saveFile(
-        // dialogTitle: 'Please select an output file:',
+      String? outputFile = await FilePicker.platform.saveFile(      
         fileName: file.name,
         initialDirectory: '/home/gabriel/app/',
         bytes: file.bytes,
@@ -62,6 +69,13 @@ Solicitacoes solicitacao = Solicitacoes();
   //   cod.text = solicitacao.cod ?? ""; 
   // }
 
+  reset(){
+    final arq = Get.find<ArquivosMob>(); 
+    arq.anexosTicket = ObservableList<PlatformFile>();
+    arq.anexosSpeed = ObservableList<PlatformFile>();
+    ticket.text = "";
+    solucao.text = "";    
+  }
   resetSolic() async{
     final arq = Get.find<ArquivosMob>(); 
     arq.anexos = ObservableList<PlatformFile>();

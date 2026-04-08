@@ -34,20 +34,19 @@ class CustomTextfield extends StatelessWidget {
     return TextField(
       inputFormatters:[
         if (mask != null) mask!,
-      ],      
+      ],            
       enabled: enabled ?? true,
       focusNode: foco,
       obscureText: obscureText ?? false,
       controller: controller,
       onChanged: onChanged,
-      onTap: onTap,        
-      style: const TextStyle(color: Colors.white), // Garante que o texto digitado seja branco
+      onTap: onTap,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: label,
-        errorText: errorText,
+        errorText: errorText,        
       ),
-      maxLines: maxLines ?? 1,
+      maxLines: maxLines ?? 1,      
     );
   }
 }
