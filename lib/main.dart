@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:solicitacoes/funcoes/login.dart';
 import 'package:solicitacoes/routes.dart';
 import 'package:solicitacoes/store/arquivos_mob.dart';
 import 'package:solicitacoes/store/login_mob.dart';
